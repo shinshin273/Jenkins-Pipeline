@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DIRECTORY_PATH = 'C:\Users\hongt\Desktop\DEAKIN\Tri 2\SIT753\Week 6'
+        DIRECTORY_PATH = 'C:\\Users\\hongt\\Desktop\\DEAKIN\\Tri 2\\SIT753\\Week 6'
         TESTING_ENVIRONMENT = 'testing'
         PRODUCTION_ENVIRONMENT = 'Shin'
         RECIPIENT_EMAIL = 'hongthamnguyen2703@gmail.com'  // Replace with the actual email address

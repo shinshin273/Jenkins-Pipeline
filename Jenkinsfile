@@ -7,20 +7,20 @@ pipeline {
             }
             post {
                 success {
-                    emailext {
+                    emailext(
                         to: "hongthamnguyen2703@gmail.com",
                         subject: "Build Stage Success",
                         body: "The Build stage has completed successfully!",
                         attachLog: true
-                    }
+                    )
                 }
                 failure {
-                    emailext {
+                    emailext(
                         to: "hongthamnguyen2703@gmail.com",
                         subject: "Build Stage Failure",
                         body: "The Build stage has failed!",
                         attachLog: true
-                    }
+                    )
                 }
             }
         }
@@ -31,20 +31,20 @@ pipeline {
             }
             post {
                 success {
-                    emailext {
+                    emailext(
                         to: "hongthamnguyen2703@gmail.com",
                         subject: "Unit and Integration Tests Success",
                         body: "The Unit and Integration Tests stage has completed successfully!",
                         attachLog: true
-                    }
+                    )
                 }
                 failure {
-                    emailext {
+                    emailext(
                         to: "hongthamnguyen2703@gmail.com",
                         subject: "Unit and Integration Tests Failure",
                         body: "The Unit and Integration Tests stage has failed!",
                         attachLog: true
-                    }
+                    )
                 }
             }
         }
@@ -61,20 +61,20 @@ pipeline {
             }
             post {
                 success {
-                    emailext {
+                    emailext(
                         to: "hongthamnguyen2703@gmail.com",
                         subject: "Security Scan Success",
                         body: "The Security Scan stage has completed successfully!",
                         attachLog: true
-                    }
+                    )
                 }
                 failure {
-                    emailext {
+                    emailext(
                         to: "hongthamnguyen2703@gmail.com",
                         subject: "Security Scan Failure",
                         body: "The Security Scan stage has failed!",
                         attachLog: true
-                    }
+                    )
                 }
             }
         }

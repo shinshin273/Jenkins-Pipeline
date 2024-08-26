@@ -3,30 +3,58 @@ pipeline{
     stages{
         stage("Build"){
             steps{
-                echo "Building..."
+                echo "Building the code using Maven"
             }
             post{
-                always{
+                success{
                     mail to: "hongthamnguyen2703@gmail.com",
-                    subject: "Build Status Email",
-                    body: "Build was successful!"
+                    subject: "Pipeline Success",
+                    body: "The pipeline has completed successfully!",
+                    attachLog: true
+                }
+                failure{
+                    mail to: "hongthamnguyen2703@gmail.com",
+                    subject: "Pipeline Failure",
+                    body: "The pipeline has failed!",
+                    attachLog: true
                 }
             }
         }
-        stage("Test"){
+        stage("Unit and Integration Tests"){
             steps{
-                echo "Testing ..."
+                echo "Running unit tests with JUnit and integration tests with Selenium"
             }
         }
-        stage("Deploy"){
+
+        stage("Code Analysis"){
             steps{
-                echo "Deploying ..."
+                echo "Analyzing code quality with SonarQube"
             }
         }
-        stage("Complete"){
+
+        stage("Security Scan"){
             steps{
-                echo "Completed."
+                echo "Performing security scan using OWASP ZAP"
+            }
+        }
+
+        stage("Deploy to Staging") {
+            steps{
+                echo "Deploying application to AWS EC2 staging server"
+            }
+        }
+
+        stage("Integration Tests on Staging") {
+            steps{
+                echo "Running integration tests on staging environment using Selenium"
+            }
+        }
+
+        stage("Deploy to Production"){
+            steps{
+                echo "Deploying application to AWS EC2 production server"
             }
         }
     }
 }
+

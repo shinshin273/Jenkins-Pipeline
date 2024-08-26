@@ -1,19 +1,56 @@
-pipeline {
+pipeline{
     agent any
-    stages {
-        stage("Build") {
-            steps {
+    stages{
+        stage("Build"){
+            steps{
                 echo "Building the code using Maven"
             }
-            post {
-                always {
-                    emailext(
-                        to: "hongthamnguyen2703@gmail.com",
-                        subject: "Build Stage Notification",
-                        body: "This is a test email from Jenkins pipeline.",
-                        attachLog: true
-                    )
+            post{
+                success{
+                    mail to: "hongthamnguyen2703@gmail.com",
+                    subject: "Pipeline Success",
+                    body: "The pipeline has completed successfully!"
                 }
+                failure{
+                    mail to: "hongthamnguyen2703@gmail.com",
+                    subject: "Pipeline Failure",
+                    body: "The pipeline has failed!"
+                }
+            }
+        }
+        stage("Unit and Integration Tests"){
+            steps{
+                echo "Running unit tests with JUnit and integration tests with Selenium"
+            }
+        }
+
+        stage("Code Analysis"){
+            steps{
+                echo "Analyzing code quality with SonarQube"
+            }
+        }
+
+        stage("Security Scan"){
+            steps{
+                echo "Performing security scan using OWASP ZAP"
+            }
+        }
+
+        stage("Deploy to Staging") {
+            steps{
+                echo "Deploying application to AWS EC2 staging server"
+            }
+        }
+
+        stage("Integration Tests on Staging") {
+            steps{
+                echo "Running integration tests on staging environment using Selenium"
+            }
+        }
+
+        stage("Deploy to Production"){
+            steps{
+                echo "Deploying application to AWS EC2 production server"
             }
         }
     }
